@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Página Inicial";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1 class="display-3">Olá, @User.Identity.Name!</h1>
+}
+else
+{
+    <h3 class="text-center">Bem-vindo(a) ao site Meus Protocolos!</h3>
+    <br />
+    <p class="text-center">Sabe aquele número de protocolo que você anota quando faz uma reclamação por telefone ou chat?</p>
+    <p class="text-center">Aqui você os registra, para que se houver uma divergência no combinado, você possa usá-los a seu favor.</p>
+
+    <h5 class="text-center">@Html.ActionLink("Cadastre-se", "Cadastro") e guarde seus direitos! É grátis!</h5>
+}

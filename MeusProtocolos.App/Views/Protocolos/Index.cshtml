@@ -1,0 +1,80 @@
+﻿@model PagedList.IPagedList<MeusProtocolos.App.Models.Protocolo>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Protocolos";
+}
+
+<h2>Lista de protocolos</h2>
+<p style="padding-top: 10px">
+    @Html.ActionLink("Incluir protocolo", "Novo", null, new { @class = "btn btn-success" })
+</p>
+
+@if (Model.Count() > 0)
+{
+    using (Html.BeginForm(null, "Protocolos", FormMethod.Get))
+    {
+        <div class="form-inline" id="form-pesquisa">
+            @Html.TextBox("textoPesquisa", ViewBag.FiltroAtual as string, new { @class = "form-control mb-2 mr-sm-2" })
+            <input type="submit" value="Pesquisar" class="btn btn-info mb-2 mr-sm-2" />
+            @Html.ActionLink("Limpar pesquisa", "Index", null, new { @class = "btn btn-secondary mb-2 mr-sm-2", @id = "limpar-pesquisa" })
+        </div>
+    }
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.ActionLink("Titulo", "Index", new { ordem = ViewBag.OrdemTitulo, filtroAtual = ViewBag.FiltroAtual })
+                </th>
+                <th>
+                    @Html.ActionLink("Numero", "Index", new { ordem = ViewBag.OrdemNumero, filtroAtual = ViewBag.FiltroAtual })
+                </th>
+                <th>
+                    @Html.ActionLink("Motivo", "Index", new { ordem = ViewBag.OrdemMotivo, filtroAtual = ViewBag.FiltroAtual })
+                </th>
+                <th>
+                    @Html.ActionLink("Data", "Index", new { ordem = ViewBag.OrdemData, filtroAtual = ViewBag.FiltroAtual })
+                </th>
+                <th>
+                    @Html.ActionLink("Resolvido?", "Index", new { ordem = ViewBag.OrdemResolvido, filtroAtual = ViewBag.FiltroAtual })
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr onclick="window.location = '@Url.Action("Detalhes", "Protocolos", new { id = item.CodProtocolo })';" class="protocolo">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Numero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Motivo)
+                    </td>
+                    <td>
+                        @item.Dia.ToShortDateString()
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Resolvido)
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <b>Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount</b>
+
+    @Html.PagedListPager(Model, pagina => Url.Action("Index",
+        new { pagina, ordem = ViewBag.OrdemAtual, filtroAtual = ViewBag.FiltroAtual }))
+}
+
+else
+{
+    <p>Nenhum protocolo encontrado.</p>
+}

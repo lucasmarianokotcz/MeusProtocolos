@@ -1,0 +1,90 @@
+﻿@model MeusProtocolos.App.Models.Protocolo
+
+@{
+    ViewBag.Title = Model.Titulo;
+}
+
+<h2>@Model.Titulo</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia)
+        </dt>
+
+        <dd>
+            @Model.Dia.ToShortDateString()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atendente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atendente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OutrasInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OutrasInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resolvido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resolvido)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.CodProtocolo }, new { @class = "btn btn-warning btns" })
+    @Html.ActionLink("Excluir", "Excluir", new { id = Model.CodProtocolo }, new { @class = "btn btn-danger btns" })
+    @Html.ActionLink("Voltar para a lista", "Index", null, new { @class = "btn btn-info btns" })
+</p>

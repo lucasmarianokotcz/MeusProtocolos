@@ -1,0 +1,63 @@
+﻿@model MeusProtocolos.App.Models.Protocolo
+
+@{
+    ViewBag.Title = "Excluir Protocolo";
+}
+
+<h2>Excluir protocolo</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia)
+        </dt>
+
+        <dd>
+            @Model.Dia.ToShortDateString()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resolvido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resolvido)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger btns" onclick="return confirm('Tem certeza que deseja excluir este protocolo?');" />
+            @Html.ActionLink("Cancelar", "Detalhes", new { id = Model.CodProtocolo }, new { @class = "btn btn-info btns" })
+        </div>
+    }
+</div>

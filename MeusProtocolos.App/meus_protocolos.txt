@@ -1,0 +1,32 @@
+===> Programa que salva protocolos de atendimento <===
+
+---
+
+INFORMAÇÕES DE USUÁRIO
+
+login
+senha
+
+--
+
+INFORMAÇÕES DE PROTOCOLO
+
+codigo unico
+titulo do protocolo
+numero do protocolo
+motivo do atendimento
+descrição do protocolo
+nome do atendente
+data e hora
+outras informações
+foi resolvido?
+
+--
+
+OPÇÕES DO USUÁRIO
+
+cadastrar protocolo
+editar protocolo
+excluir protocolo
+ver/listar protocolos
+buscar protocolos (por título e número)
