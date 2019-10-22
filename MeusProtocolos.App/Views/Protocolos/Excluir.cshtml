@@ -38,7 +38,7 @@
         </dt>
 
         <dd>
-            @Model.Dia.ToShortDateString()
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.Dia))
         </dd>
 
         <dt>
@@ -46,7 +46,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Resolvido)
+            @if (Model.Resolvido)
+            {
+                <p class="text-success">Sim</p>
+            }
+            else
+            {
+                <p class="text-danger">Não</p>
+            }
         </dd>
 
     </dl>

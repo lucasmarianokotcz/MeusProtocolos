@@ -1,6 +1,7 @@
 ﻿@model PagedList.IPagedList<MeusProtocolos.App.Models.Protocolo>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
 
 @{
     ViewBag.Title = "Protocolos";
@@ -26,10 +27,10 @@
         <thead class="thead-light">
             <tr>
                 <th>
-                    @Html.ActionLink("Titulo", "Index", new { ordem = ViewBag.OrdemTitulo, filtroAtual = ViewBag.FiltroAtual })
+                    @Html.ActionLink("Título", "Index", new { ordem = ViewBag.OrdemTitulo, filtroAtual = ViewBag.FiltroAtual })
                 </th>
                 <th>
-                    @Html.ActionLink("Numero", "Index", new { ordem = ViewBag.OrdemNumero, filtroAtual = ViewBag.FiltroAtual })
+                    @Html.ActionLink("Número", "Index", new { ordem = ViewBag.OrdemNumero, filtroAtual = ViewBag.FiltroAtual })
                 </th>
                 <th>
                     @Html.ActionLink("Motivo", "Index", new { ordem = ViewBag.OrdemMotivo, filtroAtual = ViewBag.FiltroAtual })
@@ -57,10 +58,10 @@
                         @Html.DisplayFor(modelItem => item.Motivo)
                     </td>
                     <td>
-                        @item.Dia.ToShortDateString()
+                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Dia))
                     </td>
                     <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.Resolvido)
+                        <i class="@(item.Resolvido ? "fas fa-check fa-lg text-success" : "fas fa-times fa-lg text-danger")"></i>                       
                     </td>
                 </tr>
             }

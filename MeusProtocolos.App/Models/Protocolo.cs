@@ -31,12 +31,13 @@ namespace MeusProtocolos.App.Models
         [Display(Name = "Data")]
         [Required(ErrorMessage = "Informe o dia do atendimento.")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [CustomDateRange]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Dia { get; set; }
 
         [Required(ErrorMessage = "Informe a hora do atendimento.")]
         [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         public DateTime Hora { get; set; }
 
         [StringLength(30, ErrorMessage = "Máximo de {1} caracteres.")]
