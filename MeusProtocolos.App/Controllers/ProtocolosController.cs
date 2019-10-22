@@ -53,6 +53,7 @@ namespace MeusProtocolos.App.Controllers
 
             // Pega o usuário logado.
             string usuarioLogado = PegarLoginUsuarioLogado();
+            
             List<Protocolo> protocolos = new List<Protocolo>();
 
             // Paginação.
@@ -108,7 +109,9 @@ namespace MeusProtocolos.App.Controllers
 
             // Define o tamanho da página e qual a página atual.
             int tamanhoPagina = 5;
-            int paginaAtual = (pagina ?? 1);
+            int paginaAtual = pagina ?? 1;
+
+            ViewBag.Mensagem = TempData["mensagem"];
 
             return View(protocolos.ToPagedList(paginaAtual, tamanhoPagina));
         }
@@ -144,6 +147,8 @@ namespace MeusProtocolos.App.Controllers
                 protocolo.Usuario = db.Usuario.SingleOrDefault(u => u.Login == userLogado);
                 db.Protocolo.Add(protocolo);
                 await db.SaveChangesAsync();
+                
+                TempData["mensagem"] = "Protocolo cadastrado com sucesso!";
                 return RedirectToAction("Index");
             }
 
@@ -175,6 +180,8 @@ namespace MeusProtocolos.App.Controllers
                 string userLogado = PegarLoginUsuarioLogado();
                 protocolo.Usuario = db.Usuario.SingleOrDefault(u => u.Login == userLogado);
                 await db.SaveChangesAsync();
+
+                TempData["mensagem"] = "Protocolo alterado com sucesso!";
                 return RedirectToAction("Index");
             }
             return View(protocolo);
@@ -200,6 +207,8 @@ namespace MeusProtocolos.App.Controllers
             Protocolo protocolo = await db.Protocolo.FindAsync(id);
             db.Protocolo.Remove(protocolo);
             await db.SaveChangesAsync();
+
+            TempData["mensagem"] = "Protocolo excluído com sucesso!";
             return RedirectToAction("Index");
         }
 

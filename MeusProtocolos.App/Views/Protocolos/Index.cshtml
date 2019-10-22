@@ -2,6 +2,7 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+<link rel="stylesheet" href="~/Content/toastr.css" />
 
 @{
     ViewBag.Title = "Protocolos";
@@ -61,7 +62,7 @@
                         @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Dia))
                     </td>
                     <td class="text-center">
-                        <i class="@(item.Resolvido ? "fas fa-check fa-lg text-success" : "fas fa-times fa-lg text-danger")"></i>                       
+                        <i class="@(item.Resolvido ? "fas fa-check fa-lg text-success" : "fas fa-times fa-lg text-danger")"></i>
                     </td>
                 </tr>
             }
@@ -79,3 +80,21 @@ else
 {
     <p>Nenhum protocolo encontrado.</p>
 }
+
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="~/Scripts/toastr.js"></script>
+
+<script>
+    @if (ViewBag.Mensagem == "Protocolo cadastrado com sucesso!")
+    {
+        @:toastr.success('@ViewBag.Mensagem')
+    }
+    else if (ViewBag.Mensagem == "Protocolo alterado com sucesso!")
+    {
+        @:toastr.warning('@ViewBag.Mensagem')
+    }
+    else if (ViewBag.Mensagem == "Protocolo excluído com sucesso!")
+    {
+        @:toastr.error('@ViewBag.Mensagem')
+    }
+</script>
